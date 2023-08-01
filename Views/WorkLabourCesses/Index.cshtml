@@ -1,0 +1,57 @@
+﻿@model IEnumerable<AllRightConsultant.Models.WorkLabourCess>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create" class="bi bi-plus-circle-fill  btn btn-primary">Add Major Work</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectWork)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Financialyear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PerConstruction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConstructionCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Per1LabourCess)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectWork.ProjectSiteAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Financialyear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PerConstruction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConstructionCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Per1LabourCess)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MajorworkID">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.MajorworkID">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.MajorworkID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

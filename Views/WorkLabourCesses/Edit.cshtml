@@ -1,0 +1,67 @@
+﻿@model AllRightConsultant.Models.WorkLabourCess
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>WorkLabourCess</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MajorworkID" />
+            <div class="form-group">
+                <label asp-for="WorkId" class="control-label"></label>
+                <select asp-for="WorkId" class="form-control" asp-items="ViewBag.WorkId"></select>
+                <span asp-validation-for="WorkId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Financialyear" class="control-label"></label>
+                <input asp-for="Financialyear" class="form-control" />
+                <span asp-validation-for="Financialyear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PerConstruction" class="control-label"></label>
+                <input asp-for="PerConstruction" class="form-control" />
+                <span asp-validation-for="PerConstruction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConstructionCost" class="control-label"></label>
+                <input asp-for="ConstructionCost" class="form-control" onchange="calculateLaborCess(this)" />
+                <span asp-validation-for="ConstructionCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Per1LabourCess" class="control-label">1% Labour Cess</label>
+                <input asp-for="Per1LabourCess" class="form-control" readonly />
+                <span asp-validation-for="Per1LabourCess" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        function calculateLaborCess(inputElement) {
+            var constructionCost = parseFloat(inputElement.value);
+            var laborCess = constructionCost * 0.01;
+            var laborCessField = document.getElementById("Per1LabourCess");
+            laborCessField.value = laborCess.toFixed(2);
+        }
+    </script>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

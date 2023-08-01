@@ -1,0 +1,93 @@
+﻿@model IEnumerable<AllRightConsultant.Models.ProjectWork>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create" class="bi bi-plus-circle-fill btn btn-primary">Create</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkUniqueCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectTypeNature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectSiteAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StreetName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.District)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Taluka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Village)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SanctionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total_Estimated_Cost)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkUniqueCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectTypeNature.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectSiteAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StreetName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.District.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Taluka.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Village.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SanctionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total_Estimated_Cost)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.WorkId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.WorkId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.WorkId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
