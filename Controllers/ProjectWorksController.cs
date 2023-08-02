@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -195,14 +196,14 @@ namespace AllRightConsultant.Controllers
             {
                 _context.ProjectWorks.Remove(projectWork);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProjectWorkExists(int id)
         {
-          return (_context.ProjectWorks?.Any(e => e.WorkId == id)).GetValueOrDefault();
+            return (_context.ProjectWorks?.Any(e => e.WorkId == id)).GetValueOrDefault();
         }
     }
 }

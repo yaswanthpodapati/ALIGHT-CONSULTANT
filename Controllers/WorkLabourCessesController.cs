@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AllRightConsultant.Data;
@@ -49,33 +50,29 @@ namespace AllRightConsultant.Controllers
             return View();
         }
 
-        // POST: WorkLabourCesses/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(List<WorkLabourCess> majorWorks)
+        public async Task<IActionResult> Create(WorkLabourCess workLabourCess)
         {
             if (ModelState.IsValid)
             {
-                foreach (var workLabourCess in majorWorks)
-                {
-                    // Calculate 1% Labor Cess for each major work before saving the record
-                    workLabourCess.Per1LabourCess = workLabourCess.ConstructionCost * 0.01m; // Convert 0.01 to decimal
+                // Calculate 1% Labor Cess for the given major work before saving the record
+                workLabourCess.Per1LabourCess = workLabourCess.ConstructionCost * 0.01m; // Convert 0.01 to decimal
 
-                    _context.Add(workLabourCess);
-                }
+                _context.Add(workLabourCess);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["WorkId"] = new SelectList(_context.ProjectWorks, "WorkId", "ProjectSiteAddress", majorWorks[0].WorkId);
-            return View(majorWorks);
+
+            ViewData["WorkId"] = new SelectList(_context.ProjectWorks, "WorkId", "ProjectSiteAddress", workLabourCess.WorkId);
+            return View(workLabourCess);
         }
 
-
-
         // GET: WorkLabourCesses/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.WorkLabourCesss == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -85,6 +82,7 @@ namespace AllRightConsultant.Controllers
             {
                 return NotFound();
             }
+
             ViewData["WorkId"] = new SelectList(_context.ProjectWorks, "WorkId", "ProjectSiteAddress", workLabourCess.WorkId);
             return View(workLabourCess);
         }
@@ -170,4 +168,3 @@ namespace AllRightConsultant.Controllers
         }
     }
 }
-

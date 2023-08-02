@@ -30,6 +30,7 @@
     <div class="col-md-6">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="WorkId" />
             <div class="form-group">
                 <label asp-for="WorkName" class="control-label"></label>
                 <input asp-for="WorkName" class="form-control" />

@@ -84,6 +84,9 @@ namespace AllRightConsultant.Migrations
                     b.Property<int>("DistrictID")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("LaborCess")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("ProjectSiteAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(MAX)");

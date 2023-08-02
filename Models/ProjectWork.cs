@@ -66,5 +66,6 @@ namespace AllRightConsultant.Models
         [DisplayName("Total Estimated Cost")]
         [Column(TypeName = "decimal(18, 2)")]  //  precision and scale 
         public decimal Total_Estimated_Cost { get; set; }
+        public decimal LaborCess { get; internal set; }
     }
 }

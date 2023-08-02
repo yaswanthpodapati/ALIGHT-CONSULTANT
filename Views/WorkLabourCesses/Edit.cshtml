@@ -16,7 +16,6 @@
             <div class="form-group">
                 <label asp-for="WorkId" class="control-label"></label>
                 <select asp-for="WorkId" class="form-control" asp-items="ViewBag.WorkId"></select>
-                <span asp-validation-for="WorkId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Financialyear" class="control-label"></label>
@@ -35,11 +34,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="Per1LabourCess" class="control-label">1% Labour Cess</label>
-                <input asp-for="Per1LabourCess" class="form-control" readonly />
+                <input asp-for="Per1LabourCess" id="Per1LabourCess" class="form-control" readonly />
                 <span asp-validation-for="Per1LabourCess" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />    
             </div>
         </form>
     </div>
@@ -57,11 +56,12 @@
             var laborCessField = document.getElementById("Per1LabourCess");
             laborCessField.value = laborCess.toFixed(2);
         }
+
+        // Add an event listener to the "ConstructionCost" input to trigger the calculation
+        document.getElementById("ConstructionCost").addEventListener("input", function () {
+            calculateLaborCess(this);
+        });
     </script>
 }
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
+
